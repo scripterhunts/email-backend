@@ -27,10 +27,8 @@ exports.sendEmail = async (
 ) => {
   const { name, id: recipientId } = recipientData;
 
-  // Replace placeholders in the HTML content
   let personalizedContent = htmlContent.replace(/\${NAME}/g, name);
 
-  // Add tracking pixel
   const trackingPixel = `<img src="${process.env.API_URL}/api/tracking/${campaignId}/${recipientId}" width="1" height="1" />`;
   personalizedContent += trackingPixel;
 

@@ -70,7 +70,7 @@ exports.sendCampaign = async (req, res) => {
   const { recipients } = req.body;
   const campaign = res.campaign;
   const template = await EmailTemplate.findById(campaign.templateId);
-
+  console.log(campaign,'camp')
   if (!template) {
     return res.status(404).json({ message: "Email template not found" });
   }
@@ -81,7 +81,8 @@ exports.sendCampaign = async (req, res) => {
         recipient.email,
         campaign.subject,
         template.content,
-        recipient
+        recipient,
+        campaign.id
       );
     }
     campaign.status = "completed";
