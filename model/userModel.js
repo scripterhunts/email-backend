@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
 
-const tokenSChema = new mongoose.Schema({
-  email: {
+const userSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  otp: {
+  email: {
     type: String,
     required: true,
+    unique: true,
   },
   createdAt: {
     type: Date,
@@ -15,4 +16,4 @@ const tokenSChema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("OtpModel", tokenSChema);
+module.exports = mongoose.model("User", userSchema);
