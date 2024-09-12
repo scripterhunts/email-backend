@@ -16,6 +16,8 @@ const transporter = nodemailer.createTransport({
     user: EMAIL_USER,
     pass: EMAIL_PASS,
   },
+  debug: true, // show debug output
+        logger: true // log information in console
 });
 
 exports.sendEmail = async (
