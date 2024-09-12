@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-// src/services/email.service.j
+// src/services/email.service.
 const nodemailer = require("nodemailer");
 
 const EMAIL_HOST = process.env.MAIL_HOST;
