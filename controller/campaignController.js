@@ -76,17 +76,19 @@ exports.sendCampaign = async (req, res) => {
   }
 
   try {
-    for (let recipient of recipients) {
-      await emailService.sendEmail(
-        recipient.email,
-        campaign.subject,
-        template.content,
-        recipient,
-        campaign.id
-      );
-    }
-    campaign.status = "completed";
-    await campaign.save();
+    new Promise(async (res, rej) => {
+        for (let recipient of recipients) {
+        await emailService.sendEmail(
+          recipient.email,
+          campaign.subject,
+          template.content,
+          recipient,
+          campaign.id
+        );
+        campaign.status = "completed";
+        await campaign.save();
+      }
+    })
     res.json({ message: "Campaign sent successfully" });
   } catch (err) {
     res.status(500).json({ message: err.message });
